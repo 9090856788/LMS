@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
+import Login from "./pages/Login";
 
 const App = () => {
-  return <div>App</div>;
+  return(
+    <>
+    <Login/>
+    </>
+  )
 };
 
 export default App;
