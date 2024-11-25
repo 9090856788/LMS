@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button"
+/* eslint-disable react/no-unescaped-entities */
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -6,21 +7,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Login = () => {
   return (
     <>
-      <div className="w-full flex justify-center items-center h-[80vh]">
-        <Tabs defaultValue="account" className="w-[400px]">
+      <div className="flex items-center justify-center min-h-screen">
+        <Tabs defaultValue="signup" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="signup">Signup</TabsTrigger>
             <TabsTrigger value="login">Login</TabsTrigger>
@@ -36,16 +32,31 @@ const Login = () => {
               <CardContent className="space-y-2">
                 <div className="space-y-1">
                   <Label htmlFor="name">Name</Label>
-                  <Input type="text" id="name" placeholder="Enter your Full Name" required />
+                  <Input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your Full Name"
+                    required
+                  />
                 </div>
                 <div className="space-y-1">
                   <Label htmlFor="name">Email</Label>
-                  <Input type="email" id="email" placeholder="Enter your Email" required />
+                  <Input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your Email"
+                    required
+                  />
                 </div>
 
                 <div className="space-y-1">
                   <Label htmlFor="name">Password</Label>
-                  <Input type="password" id="password" placeholder="Enter your Password" required />
+                  <Input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your Password"
+                    required
+                  />
                 </div>
               </CardContent>
               <CardFooter>
@@ -64,12 +75,22 @@ const Login = () => {
               <CardContent className="space-y-2">
                 <div className="space-y-1">
                   <Label htmlFor="name">Email</Label>
-                  <Input type="email" id="email" placeholder="Enter your Email" required />
+                  <Input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your Email"
+                    required
+                  />
                 </div>
 
                 <div className="space-y-1">
                   <Label htmlFor="name">Password</Label>
-                  <Input type="password" id="password" placeholder="Enter your Password" required />
+                  <Input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your Password"
+                    required
+                  />
                 </div>
               </CardContent>
               <CardFooter>
@@ -80,6 +101,6 @@ const Login = () => {
         </Tabs>
       </div>
     </>
-  )
-}
+  );
+};
 export default Login;
