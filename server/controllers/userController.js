@@ -1,5 +1,6 @@
-import { User } from "../models/userSchema";
+import { User } from "../models/userSchema.js";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 
 // User register API
 export const register = async (req, res) => {
@@ -22,8 +23,9 @@ export const register = async (req, res) => {
         message: "User email is already exist",
       });
     }
-    const hashedPassword = bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
+    //Create the user
     await User.create({
       name,
       email,
@@ -36,7 +38,46 @@ export const register = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Something went wrong",
+      error: error.message,
+    });
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
+      });
+    }
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Incorrect email or Password",
+      });
+    }
+
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatched) {
+      return res.status(400).json({
+        success: false,
+        message: "Incorrect Password",
+      });
+    }
+
+    // Generate token and activate user session
+    generateToken(res, user, `Welcome back ${user.name}`);
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong",
+      error: error.message,
     });
   }
 };
