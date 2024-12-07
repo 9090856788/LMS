@@ -31,6 +31,9 @@ const Login = () => {
     return emailRegex.test(email);
   };
 
+  // Validate if all fields are filled
+  const isSignupDisabled = !email || !password || !name;
+  const isLoginDisabled = !email || !password;
   const handleRegister = async () => {
     // Validation
     if (!name.trim()) {
@@ -223,7 +226,10 @@ const Login = () => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button onClick={handleRegister} disabled={loading}>
+              <Button
+                onClick={handleRegister}
+                disabled={loading || isSignupDisabled}
+              >
                 {loading ? (
                   <RotatingLines
                     visible={true}
@@ -275,7 +281,10 @@ const Login = () => {
               </div>
             </CardContent>
             <CardFooter>
-              <Button onClick={handleLogin} disabled={loading}>
+              <Button
+                onClick={handleLogin}
+                disabled={loading || isLoginDisabled}
+              >
                 {loading ? (
                   <RotatingLines
                     visible={true}
