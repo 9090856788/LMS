@@ -5,11 +5,13 @@ import { store } from "./redux/store";
 import Login from "./pages/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <>
       <Provider store={store}>
+        <Navbar/>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
